@@ -7,12 +7,12 @@
 extern "C" {
 #endif
 
-extern const lv_img_dsc_t img_setting48;
-extern const lv_img_dsc_t img_light32;
-extern const lv_img_dsc_t img_fan32;
-extern const lv_img_dsc_t img_tv32;
-extern const lv_img_dsc_t img_thermostat32;
-extern const lv_img_dsc_t img_humidity32;
+extern const lv_img_dsc_t img_cloudy;
+extern const lv_img_dsc_t img_sunny;
+extern const lv_img_dsc_t img_rainy;
+extern const lv_img_dsc_t img_part_cloudy;
+extern const lv_img_dsc_t img_snowy;
+extern const lv_img_dsc_t img_unknown;
 
 #ifndef EXT_IMG_DESC_T
 #define EXT_IMG_DESC_T

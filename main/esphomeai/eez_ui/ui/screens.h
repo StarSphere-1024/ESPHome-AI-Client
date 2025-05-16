@@ -13,9 +13,13 @@ typedef struct _objects_t {
     lv_obj_t *status_bar;
     lv_obj_t *content_;
     lv_obj_t *obj0;
-    lv_obj_t *tmp_data_label_;
+    lv_obj_t *weather_icon;
+    lv_obj_t *weather_label;
     lv_obj_t *obj1;
     lv_obj_t *obj2;
+    lv_obj_t *tmp_data_label_;
+    lv_obj_t *obj3;
+    lv_obj_t *obj4;
     lv_obj_t *humi_data_label_;
 } objects_t;
 

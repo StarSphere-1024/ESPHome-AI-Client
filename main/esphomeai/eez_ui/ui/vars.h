@@ -9,13 +9,20 @@ extern "C" {
 #endif
 
 // enum declarations
-
+typedef enum {
+    WEATHER_UNKNOWN = 0,
+    WEATHER_SUNNY,
+    WEATHER_CLOUDY,
+    WEATHER_PART_CLOUDY,
+    WEATHER_RAINY,
+    WEATHER_SNOWY
+} WEATHER;
 
 
 // Flow global variables
 
 enum FlowGlobalVariables {
-    FLOW_GLOBAL_VARIABLE_NONE
+    FLOW_GLOBAL_VARIABLE_WEATHER_VAR = 0
 };
 
 // Native global variables
@@ -24,6 +31,8 @@ extern const char * get_var_humidity_data();
 extern void set_var_humidity_data(float * value);
 extern const char * get_var_temper_data();
 extern void set_var_temper_data(float * value);
+extern const char *get_var_weather_var();
+extern void set_var_weather_var(WEATHER weather);
 
 
 #ifdef __cplusplus

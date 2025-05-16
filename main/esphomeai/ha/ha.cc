@@ -1,7 +1,6 @@
 #include "ha.h"
 #include <esp_log.h>
 #include <cJSON.h>
-#include "eez_ui/ui/vars.h"
 
 static const char* TAG = "HomeAssistant";
 
@@ -55,17 +54,48 @@ bool HomeAssistant::request_weather() {
     return true;
 }
 
+WEATHER HomeAssistant::map_string_to_weather(const std::string &weather) const
+{
+    if (weather == "sunny")
+    {
+        return WEATHER_SUNNY;
+    }
+    else if (weather == "cloudy")
+    {
+        return WEATHER_CLOUDY;
+    }
+    else if (weather == "partlycloudy" || weather == "partly cloudy")
+    {
+        return WEATHER_PART_CLOUDY;
+    }
+    else if (weather == "rainy" || weather == "rain")
+    {
+        return WEATHER_RAINY;
+    }
+    else if (weather == "snowy" || weather == "snow")
+    {
+        return WEATHER_SNOWY;
+    }
+    else
+    {
+        ESP_LOGW(TAG, "Unknown weather condition: %s", weather.c_str());
+        return WEATHER_UNKNOWN;
+    }
+}
+
 void HomeAssistant::on_message(const std::string& topic, const std::string& message) {
     if (topic == "homeassistant/weather/home") {
         cJSON* root = cJSON_Parse(message.c_str());
         if (root) {
+            cJSON* weather = cJSON_GetObjectItem(root, "weather");
             cJSON* temp = cJSON_GetObjectItem(root, "temperature");
             cJSON* hum = cJSON_GetObjectItem(root, "humidity");
-            if (temp && hum) {
+            if (weather && temp && hum) {
                 temperature_ = static_cast<float>(atof(temp->valuestring));
                 humidity_ = static_cast<float>(atof(hum->valuestring));
                 set_var_temper_data(&temperature_);
                 set_var_humidity_data(&humidity_);
+                set_var_weather_var(map_string_to_weather(weather->valuestring));
                 ESP_LOGI(TAG, "Received temperature: %.1f, humidity: %.1f", 
                         temperature_, humidity_);
             }

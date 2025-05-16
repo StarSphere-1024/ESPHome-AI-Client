@@ -1,6 +1,6 @@
 #ifndef HA_H
 #define HA_H
-
+#include "eez_ui/ui/vars.h"
 #include <string>
 #include <mqtt_client.h>
 
@@ -25,6 +25,8 @@ private:
     static void mqtt_event_handler(void* handler_args, esp_event_base_t base, 
                                  int32_t event_id, void* event_data);
     void on_message(const std::string& topic, const std::string& message);
+
+    WEATHER map_string_to_weather(const std::string &weather) const;
 
     esp_mqtt_client_handle_t client_;
     std::string broker_uri_;
