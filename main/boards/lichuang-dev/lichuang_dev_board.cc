@@ -16,6 +16,8 @@
 #include <esp_lvgl_port.h>
 #include <lvgl.h>
 
+#include "eez_ui/ui/vars.h"
+#include "esphomeai/aht20_bmp280/aht20.h"
 
 #define TAG "LichuangDevBoard"
 
@@ -41,9 +43,11 @@ class LichuangDevBoard : public WifiBoard {
 private:
     i2c_master_bus_handle_t i2c_bus_;
     i2c_master_dev_handle_t pca9557_handle_;
+    i2c_master_dev_handle_t aht20_handle_;
     Button boot_button_;
     LcdDisplay* display_;
     Pca9557* pca9557_;
+    AHT20* aht20_;
 
     void InitializeI2c() {
         // Initialize I2C peripheral
@@ -63,6 +67,12 @@ private:
 
         // Initialize PCA9557
         pca9557_ = new Pca9557(i2c_bus_, 0x19);
+        aht20_ = new AHT20(i2c_bus_);
+        float temperature, humidity;
+        aht20_->Read(&temperature, &humidity);
+        set_var_temper_data(&temperature);
+        set_var_humidity_data(&humidity);
+        
     }
 
     void InitializeSpi() {
@@ -170,6 +180,27 @@ private:
         thing_manager.AddThing(iot::CreateThing("Speaker"));
         thing_manager.AddThing(iot::CreateThing("Screen"));
     }
+
+    // static void SensorTask(void *pvParameters)
+    // {
+    //     LichuangDevBoard *instance = static_cast<LichuangDevBoard *>(pvParameters);
+    //     float temperature, humidity;
+
+    //     while (true)
+    //     {
+    //         if (instance->aht20_->Read(&temperature, &humidity))
+    //         {
+    //             set_var_temper_data(&temperature);
+    //             set_var_humidity_data(&humidity);
+    //             ESP_LOGI(TAG, "Temperature: %.2f°C, Humidity: %.2f%%", temperature, humidity);
+    //         }
+    //         else
+    //         {
+    //             ESP_LOGE(TAG, "Failed to read AHT20 data");
+    //         }
+    //         vTaskDelay(pdMS_TO_TICKS(5000)); // Read every 5 seconds
+    //     }
+    // }
 
 public:
     LichuangDevBoard() : boot_button_(BOOT_BUTTON_GPIO) {

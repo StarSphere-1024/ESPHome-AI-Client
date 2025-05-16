@@ -25,6 +25,7 @@ set(SOURCES "audio_codecs/audio_codec.cc"
             "esphomeai/eez_ui/ui/screens.c"
             "esphomeai/eez_ui/ui/images.c"
             "esphomeai/eez_ui/ui/styles.c"
+            "esphomeai/eez_ui/ui/vars.c"
             "esphomeai/eez_ui/ui/ui_image_fan32.c"
             "esphomeai/eez_ui/ui/ui_image_humidity32.c"
             "esphomeai/eez_ui/ui/ui_image_light32.c"
@@ -32,6 +33,7 @@ set(SOURCES "audio_codecs/audio_codec.cc"
             "esphomeai/eez_ui/ui/ui_image_thermostat32.c"
             "esphomeai/eez_ui/ui/ui_image_tv32.c"
             "esphomeai/esphomeai.cc"
+            "esphomeai/aht20_bmp280/aht20.cc"
             )
 
 set(INCLUDE_DIRS "." "display" "audio_codecs" "protocols" "audio_processing" "esphomeai")
@@ -128,7 +130,7 @@ elseif(CONFIG_BOARD_TYPE_LILYGO_T_DISPLAY_S3_PRO_MVSRLORA_NO_BATTERY)
     set(BOARD_TYPE "lilygo-t-display-s3-pro-mvsrlora")
 elseif(CONFIG_BOARD_TYPE_MOVECALL_MOJI_ESP32S3)
     set(BOARD_TYPE "movecall-moji-esp32s3")
-    elseif(CONFIG_BOARD_TYPE_MOVECALL_CUICAN_ESP32S3)
+elseif(CONFIG_BOARD_TYPE_MOVECALL_CUICAN_ESP32S3)
     set(BOARD_TYPE "movecall-cuican-esp32s3")
 elseif(CONFIG_BOARD_TYPE_ATK_DNESP32S3)
     set(BOARD_TYPE "atk-dnesp32s3")

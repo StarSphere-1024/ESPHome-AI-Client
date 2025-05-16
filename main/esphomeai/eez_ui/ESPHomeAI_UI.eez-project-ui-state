@@ -1,7 +1,10 @@
 {
   "navigation": {
     "selectedUserPageObject": "[ESPHomeAI_UI.eez-project]:/userPages/0",
-    "subnavigationSelectedItems": {}
+    "selectedGlobalVariableObject": "[ESPHomeAI_UI.eez-project]:/variables/globalVariables/1",
+    "subnavigationSelectedItems": {
+      "variables-tab/sub-navigation/selected-item": "Global"
+    }
   },
   "layoutModel": {
     "rootEditor": {
@@ -68,7 +71,7 @@
           },
           {
             "type": "border",
-            "selected": 1,
+            "selected": 0,
             "location": "bottom",
             "children": [
               {
@@ -115,7 +118,7 @@
             {
               "type": "row",
               "id": "#3ba56c1d-fb9b-43be-a84f-e73817e8413c",
-              "weight": 32.25806451612903,
+              "weight": 20.571428571428573,
               "children": [
                 {
                   "type": "tabset",
@@ -163,7 +166,8 @@
                       "enableClose": false,
                       "icon": "svg:hierarchy"
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
@@ -186,22 +190,10 @@
             {
               "type": "tabset",
               "id": "EDITORS",
-              "weight": 47.74193548387097,
+              "weight": 41.56399217221134,
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
               "children": [
-                {
-                  "type": "tab",
-                  "id": "#685006cd-f5f1-45a4-ba9e-fcc39be69194",
-                  "name": "Settings",
-                  "component": "editor",
-                  "config": {
-                    "objectPath": "[ESPHomeAI_UI.eez-project]:/settings",
-                    "subObjectPath": "[ESPHomeAI_UI.eez-project]:/settings",
-                    "permanent": false
-                  },
-                  "icon": "material:settings"
-                },
                 {
                   "type": "tab",
                   "id": "#64f5a5c4-6857-4a7c-9f4c-d5f4ed28e787",
@@ -213,13 +205,12 @@
                   },
                   "icon": "svg:page"
                 }
-              ],
-              "active": true
+              ]
             },
             {
               "type": "row",
               "id": "#5bb31cb1-d8ba-4172-bbb2-53b1ab09951f",
-              "weight": 20,
+              "weight": 37.864579256360074,
               "children": [
                 {
                   "type": "tabset",
@@ -986,6 +977,14 @@
             "0": {},
             "1": {
               "0": {}
+            },
+            "3": {
+              "0": {
+                "0": {
+                  "$selected": true
+                }
+              },
+              "2": {}
             }
           }
         }
@@ -993,7 +992,7 @@
       "transform": {
         "translate": {
           "x": -251.25000000000006,
-          "y": -265.8729525974819
+          "y": -165.8729525974819
         },
         "scale": 1.5
       },
